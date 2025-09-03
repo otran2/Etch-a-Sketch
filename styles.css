@@ -26,3 +26,10 @@ body{
     aspect-ratio: 1 / 1;
     width: 40%;
 }
+
+.square{
+    aspect-ratio: 1 / 1;
+    box-sizing: border-box;
+    border-right: 2px black solid;
+    border-bottom: 2px black solid;
+}
