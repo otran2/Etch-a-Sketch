@@ -22,4 +22,18 @@ function createGrid(rows, cols){
     }
 }
 
+function getRandomColor(){
+    let red = Math.floor(Math.random() * 256);
+    let green = Math.floor(Math.random() * 256);
+    let blue = Math.floor(Math.random() * 256);
+    return `rgb(${red}, ${green}, ${blue})`;
+}
+
+container.addEventListener('mouseover', function(event){
+    console.log("Hey there")
+    if (event.target.classList.contains("square")){
+        event.target.style.backgroundColor = getRandomColor()
+    }
+})
+
 createGrid(INITIAL_ROWS, INITIAL_COLUMNS)
