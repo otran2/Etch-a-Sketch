@@ -3,6 +3,8 @@ let BORDER_SETTINGS = "2px black solid"
 
 
 const container = document.querySelector(".container")
+const sizeField = document.querySelector(".sizeField")
+const submitButton = document.querySelector(".submitButton")
 
 function createGrid(rows, cols){
     //Ratio of size for the individual squares
@@ -29,10 +31,25 @@ function getRandomColor(opacity = 0){
     return `rgb(${red}, ${green}, ${blue}, ${opacity+0.1})`;
 }
 
+function setSize(rows, cols){
+    container.innerHTML = ""
+    createGrid(rows, cols)
+}
+
 container.addEventListener('mouseover', function(event){
     if (event.target.classList.contains("square")){
         const curBackground = window.getComputedStyle(event.target).backgroundColor.split(/[^0-9.]+/); 
         event.target.style.backgroundColor = getRandomColor(parseFloat(curBackground[4]))
+    }
+})
+
+submitButton.addEventListener('click', function(event){
+    let dimensions = sizeField.value.split("x")
+    if (dimensions.every(elem => /^\d+$/.test(elem)) && dimensions.length === 2){
+        setSize(dimensions[0], dimensions[1])
+    }
+    else{
+        alert("Invalid input, please follow the example's format")
     }
 })
 
