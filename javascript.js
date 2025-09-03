@@ -22,17 +22,17 @@ function createGrid(rows, cols){
     }
 }
 
-function getRandomColor(){
+function getRandomColor(opacity = 0){
     let red = Math.floor(Math.random() * 256);
     let green = Math.floor(Math.random() * 256);
     let blue = Math.floor(Math.random() * 256);
-    return `rgb(${red}, ${green}, ${blue})`;
+    return `rgb(${red}, ${green}, ${blue}, ${opacity+0.1})`;
 }
 
 container.addEventListener('mouseover', function(event){
-    console.log("Hey there")
     if (event.target.classList.contains("square")){
-        event.target.style.backgroundColor = getRandomColor()
+        const curBackground = window.getComputedStyle(event.target).backgroundColor.split(/[^0-9.]+/); 
+        event.target.style.backgroundColor = getRandomColor(parseFloat(curBackground[4]))
     }
 })
 
